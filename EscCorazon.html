@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <title>Farmeo Escamas Corazón</title>
   <style>
@@ -8,27 +6,163 @@
       margin: 0; font-family: Arial, sans-serif;
       background-image: url("Imagenes/EscCorazon.jpg");
       background-size: cover; background-position: center;
+      background-attachment: fixed;
       min-height: 100vh; color: white;
     }
     .overlay { background: rgba(0,0,0,0.8); min-height: 100vh; padding: 40px; }
     .content { max-width: 1000px; margin: auto; }
-    .guia { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 12px; line-height: 1.8; }
-    .volver { display: block; width: fit-content; margin: 30px auto; padding: 10px 20px; 
-              background: rgba(255,255,255,0.2); border-radius: 10px; text-decoration: none; color: white; }
-  </style>
-</head>
-<body>
+    
+    .guia { 
+      background: rgba(255,255,255,0.1); 
+      padding: 25px; border-radius: 12px; 
+      line-height: 1.8; margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    h1 { text-align: center; }
+    h2 {
+      color: #ff85a2;
+      border-bottom: 1px solid rgba(255, 133, 162, 0.3);
+      padding-bottom: 5px;
+      text-align: center;
+    }
+
+    .highlight { color: #ff85a2; font-weight: bold; }
+    .item-icon { width: 30px; height: 30px; vertical-align: middle; margin: 0 5px; }
+
+    .img-box {
+      width: 100%; max-width: 600px;
+      display: block; margin: 15px auto;
+      border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .map-container { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .map-half { width: 48%; min-width: 300px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); }
+
+    /* --- CONTENEDOR CENTRADO PROFESIONAL --- */
+    .poke-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      background: rgba(0,0,0,0.3);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .poke-card { 
+      flex: 0 1 180px; 
+      text-align: center; 
+      font-size: 12px; 
+      background: rgba(255,255,255,0.05); 
+      padding: 15px; 
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sprite-row { display: flex; justify-content: center; gap: 5px; margin-bottom: 8px; }
+    .poke-card img { width: 50px; height: 50px; image-rendering: pixelated; }
+    .rarity { display: block; font-size: 11px; margin-top: 5px; color: #d3d3d3; }
+    .level { font-weight: bold; color: #87cefa; display: block; }
+
+    .volver { 
+      display: block; width: fit-content; margin: 30px auto; padding: 10px 20px; 
+      background: rgba(255,255,255,0.2); border-radius: 10px; 
+      text-decoration: none; color: white; transition: 0.3s;
+    }
+    .volver:hover { background: rgba(255,255,255,0.3); }
+  </style></head><body>
   <div class="overlay">
     <div class="content">
-      <h1>🐚 Farmeo Escamas Corazón</h1>
+      <h1>💰 Farmeo de Escamas Corazón <img src="Imagenes/corazon.jpg" class="item-icon"></h1>
+
       <div class="guia">
-        <h2>📋 Estrategia Sugerida</h2>
-        <p>• <strong>Pokémon:</strong> Luvdisc (Salvaje).</p>
-        <p>• <strong>Método:</strong> Usar un Pokémon con <strong>Fracisco / Cacheo</strong> y el movimiento <strong>Ladrón</strong>.</p>
-        <p>• <strong>Ubicación:</strong> Pescar con Supercaña en Ever Grande City o Rutas de Hoenn.</p>
+        <h2>💡 Estrategia y Herramientas</h2>
+        <p>• <strong>Herramienta:</strong> <img src="Imagenes/SuperRod.jpg" class="item-icon"> <span class="highlight">Supercaña / Caña Vieja</span> según la zona.</p>
+        <p>• <strong>Movimientos:</strong> Usar <span class="highlight">Ladrón / Antojo</span> en <strong>Luvdisc</strong> para robarle la Escama Corazón.</p>
+        <p>• <strong>Extras:</strong> Usar <span class="highlight">Día de Pago</span> en los demás pokes para ganar dinero extra.</p>
       </div>
+
+      <div class="guia">
+        <h2>📋 PokePaste del Equipo</h2>
+        <img src="Imagenes/PastePayDay.jpg" alt="PokePaste Team" class="img-box">
+      </div>
+
+      <div class="guia">
+        <h2>📍 Colosalia (Ever Grande City)</h2>
+        <div class="map-container">
+          <img src="Imagenes/colosalia.png" class="map-half">
+          <img src="Imagenes/ColosaliaHub.png" class="map-half">
+        </div>
+        
+        <div class="poke-grid">
+          <div class="poke-card" style="border-color: rgba(255, 133, 162, 0.5);">
+            <div class="sprite-row">
+              <img src="Imagenes/370.png"><img src="Imagenes/370Shiny.png">
+            </div>
+            <span class="highlight">Luvdisc</span>
+            <span class="level">Nv. 30 - 40</span>
+            <span class="rarity">Muy Común</span>
+          </div>
+
+          <div class="poke-card">
+            <div class="sprite-row">
+              <img src="Imagenes/222.png"><img src="Imagenes/222Shiny.png">
+            </div>
+            Corsola
+            <span class="level">Nv. 30 - 40</span>
+            <span class="rarity">Poco Común</span>
+          </div>
+
+          <div class="poke-card">
+            <div class="sprite-row">
+              <img src="Imagenes/320.png"><img src="Imagenes/320Shiny.png">
+            </div>
+            Wailmer
+            <span class="level">Nv. 30 - 40</span>
+            <span class="rarity">Muy Común</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="guia">
+        <h2>📍 Bahía Arenisca (Undella Bay)</h2>
+        <div class="map-container">
+          <img src="Imagenes/Arenisca.png" class="map-half">
+          <img src="Imagenes/AreniscaHub.png" class="map-half">
+        </div>
+
+        <div class="poke-grid">
+          <div class="poke-card" style="border-color: rgba(255, 133, 162, 0.5);">
+            <div class="sprite-row">
+              <img src="Imagenes/370.png"><img src="Imagenes/370Shiny.png">
+            </div>
+            <span class="highlight">Luvdisc</span>
+            <span class="level">Nv. 35 - 55</span>
+            <span class="rarity">Muy Común</span>
+          </div>
+
+          <div class="poke-card">
+            <div class="sprite-row">
+              <img src="Imagenes/90.png"><img src="Imagenes/90Shiny.png">
+            </div>
+            Shellder
+            <span class="level">Nv. 35 - 55</span>
+            <span class="rarity">Común</span>
+          </div>
+
+          <div class="poke-card">
+            <div class="sprite-row">
+              <img src="Imagenes/223.png"><img src="Imagenes/223Shiny.png">
+            </div>
+            Remoraid
+            <span class="level">Nv. 35 - 55</span>
+            <span class="rarity">Muy Común</span>
+          </div>
+        </div>
+      </div>
+
       <a class="volver" href="index.html">⬅ Volver al menú</a>
     </div>
-  </div>
-</body>
-</html>
+  </div></body></html>

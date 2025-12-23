@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
+<!DOCTYPE html><html lang="es"><head>
   <meta charset="UTF-8">
   <title>Farmeo Día de Pago</title>
   <style>
@@ -8,27 +6,196 @@
       margin: 0; font-family: Arial, sans-serif;
       background-image: url("Imagenes/PayDay.jpg");
       background-size: cover; background-position: center;
+      background-attachment: fixed;
       min-height: 100vh; color: white;
     }
     .overlay { background: rgba(0,0,0,0.8); min-height: 100vh; padding: 40px; }
     .content { max-width: 1000px; margin: auto; }
-    .guia { background: rgba(255,255,255,0.1); padding: 25px; border-radius: 12px; line-height: 1.8; }
-    .volver { display: block; width: fit-content; margin: 30px auto; padding: 10px 20px; 
-              background: rgba(255,255,255,0.2); border-radius: 10px; text-decoration: none; color: white; }
-  </style>
-</head>
-<body>
+    
+    .guia { 
+      background: rgba(255,255,255,0.1); 
+      padding: 25px; 
+      border-radius: 12px; 
+      line-height: 1.8; 
+      margin-bottom: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    h1 { text-align: center; }
+    h2 {
+      color: #ff85a2;
+      border-bottom: 1px solid rgba(255, 133, 162, 0.3);
+      padding-bottom: 5px;
+      text-align: center;
+    }
+
+    /* Estilos de Imagen de Mapa y Paste */
+    .img-box {
+      width: 100%;
+      max-width: 600px;
+      display: block;
+      margin: 15px auto;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    /* Estilos para objetos de estrategia */
+    .item-icon {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      margin: 0 5px;
+      border-radius: 4px;
+    }
+
+    /* Estilos de Cuadrícula de Pokémon */
+    .poke-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+      background: rgba(0,0,0,0.3);
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .poke-card { text-align: center; font-size: 12px; }
+    .poke-card img {
+      width: 50px;
+      height: 50px;
+      display: block;
+      margin: 0 auto 5px;
+      image-rendering: pixelated;
+    }
+
+    /* Estilos Legendarios con Sprites */
+    .legendarios {
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .legendarios span { color: #ffd700; font-weight: bold; display: block; margin-bottom: 10px; }
+    .legend-flex { display: flex; justify-content: center; gap: 20px; }
+    .legend-item { font-size: 11px; color: #eee; }
+    .legend-item img { width: 45px; height: 45px; display: block; margin: 0 auto; image-rendering: pixelated; }
+
+    .highlight { color: #ffd700; font-weight: bold; }
+
+    .volver { 
+      display: block; width: fit-content; margin: 30px auto; padding: 10px 20px; 
+      background: rgba(255,255,255,0.2); border-radius: 10px; 
+      text-decoration: none; color: white; transition: 0.3s;
+    }
+    .volver:hover { background: rgba(255,255,255,0.3); }
+  </style></head><body>
   <div class="overlay">
     <div class="content">
       <h1>💰 Farmeo Día de Pago</h1>
+
       <div class="guia">
-        <h2>📋 Estrategia Sugerida</h2>
-        <p>• <strong>Pokémon Principal:</strong> Meowth / Persian con la habilidad <strong>Recogida</strong>.</p>
-        <p>• <strong>Objeto:</strong> Moneda Amuleto para duplicar ganancias.</p>
-        <p>• <strong>Ubicación:</strong> Isla Inta (Prado Islarte) o rutas con niveles bajos.</p>
+        <h2>💡 Estrategia Sugerida</h2>
+        <p>• <strong>Pokémon Principal:</strong> Meowth / Munchlax con la habilidad <span class="highlight">Recogida</span>.</p>
+        <p>• <strong>Objeto:</strong> Moneda Amuleto para duplicar ganancias y señuelos para aumentar los encuentros.</p>
+        <p>• <strong>Potenciadores de Daño:</strong> Usar <img src="Imagenes/CB.jpg" class="item-icon"> <span class="highlight">Cinta Elegida</span> o <img src="Imagenes/Seda.jpg" class="item-icon"> <span class="highlight">Pañuelo Seda</span> para asegurar el OHKO con Día de Pago.</p>
       </div>
+
+      <div class="guia">
+        <h2>📋 PokePaste del Equipo</h2>
+        <img src="Imagenes/PastePayDay.jpg" alt="PokePaste Team" class="img-box">
+      </div>
+
+      <div class="guia">
+        <h2>📍 Bosque Baya</h2>
+        <img src="Imagenes/Baya.jpg" alt="Mapa Bosque Baya" class="img-box">
+        
+        <div class="legendarios">
+          <span>✨ Legendarios Errantes</span>
+          <div class="legend-flex">
+            <div class="legend-item"><img src="Imagenes/144.png">Articuno</div>
+            <div class="legend-item"><img src="Imagenes/145.png">Zapdos</div>
+            <div class="legend-item"><img src="Imagenes/146.png">Moltres</div>
+          </div>
+        </div>
+
+        <div class="poke-grid">
+          <div class="poke-card"><img src="Imagenes/16.png">Pidgey</div>
+          <div class="poke-card"><img src="Imagenes/17.png">Pidgeotto</div>
+          <div class="poke-card"><img src="Imagenes/43.png">Oddish</div>
+          <div class="poke-card"><img src="Imagenes/44.png">Gloom</div>
+          <div class="poke-card"><img src="Imagenes/48.png">Venonat</div>
+          <div class="poke-card"><img src="Imagenes/49.png">Venomoth</div>
+          <div class="poke-card"><img src="Imagenes/54.png">Psyduck</div>
+          <div class="poke-card"><img src="Imagenes/69.png">Bellsprout</div>
+          <div class="poke-card"><img src="Imagenes/70.png">Weepinbell</div>
+          <div class="poke-card"><img src="Imagenes/79.png">Slowpoke</div>
+          <div class="poke-card"><img src="Imagenes/96.png">Drowzee</div>
+          <div class="poke-card"><img src="Imagenes/97.png">Hypno</div>
+          <div class="poke-card"><img src="Imagenes/102.png">Exeggcute</div>
+          <div class="poke-card"><img src="Imagenes/446.png">Munchlax</div>
+        </div>
+      </div>
+
+      <div class="guia">
+        <h2>📍 Bosquejo</h2>
+        <img src="Imagenes/Bosquejo.jpg" alt="Mapa Bosquejo" class="img-box">
+
+        <div class="legendarios">
+          <span>✨ Legendarios Errantes</span>
+          <div class="legend-flex">
+            <div class="legend-item"><img src="Imagenes/144.png">Articuno</div>
+            <div class="legend-item"><img src="Imagenes/145.png">Zapdos</div>
+            <div class="legend-item"><img src="Imagenes/146.png">Moltres</div>
+          </div>
+        </div>
+
+        <div class="poke-grid">
+          <div class="poke-card"><img src="Imagenes/10.png">Caterpie</div>
+          <div class="poke-card"><img src="Imagenes/11.png">Metapod</div>
+          <div class="poke-card"><img src="Imagenes/12.png">Butterfree</div>
+          <div class="poke-card"><img src="Imagenes/13.png">Weedle</div>
+          <div class="poke-card"><img src="Imagenes/14.png">Kakuna</div>
+          <div class="poke-card"><img src="Imagenes/15.png">Beedrill</div>
+          <div class="poke-card"><img src="Imagenes/127.png">Pinsir</div>
+          <div class="poke-card"><img src="Imagenes/165.png">Ledyba</div>
+          <div class="poke-card"><img src="Imagenes/166.png">Ledian</div>
+          <div class="poke-card"><img src="Imagenes/167.png">Spinarak</div>
+          <div class="poke-card"><img src="Imagenes/168.png">Ariados</div>
+          <div class="poke-card"><img src="Imagenes/214.png">Heracross</div>
+        </div>
+      </div>
+
+      <div class="guia">
+        <h2>📍 Isla Inta</h2>
+        <img src="Imagenes/Inta.jpg" alt="Mapa Isla Inta" class="img-box">
+
+        <div class="legendarios">
+          <span>✨ Legendarios Errantes</span>
+          <div class="legend-flex">
+            <div class="legend-item"><img src="Imagenes/144.png">Articuno</div>
+            <div class="legend-item"><img src="Imagenes/145.png">Zapdos</div>
+            <div class="legend-item"><img src="Imagenes/146.png">Moltres</div>
+          </div>
+        </div>
+
+        <div class="poke-grid">
+          <div class="poke-card"><img src="Imagenes/16.png">Pidgey</div>
+          <div class="poke-card"><img src="Imagenes/17.png">Pidgeotto</div>
+          <div class="poke-card"><img src="Imagenes/52.png">Meowth</div>
+          <div class="poke-card"><img src="Imagenes/53.png">Persian</div>
+          <div class="poke-card"><img src="Imagenes/54.png">Psyduck</div>
+          <div class="poke-card"><img src="Imagenes/79.png">Slowpoke</div>
+          <div class="poke-card"><img src="Imagenes/161.png">Sentret</div>
+          <div class="poke-card"><img src="Imagenes/162.png">Furret</div>
+          <div class="poke-card"><img src="Imagenes/176.png">Togetic</div>
+          <div class="poke-card"><img src="Imagenes/187.png">Hoppip</div>
+          <div class="poke-card"><img src="Imagenes/188.png">Skiploom</div>
+        </div>
+      </div>
+
       <a class="volver" href="index.html">⬅ Volver al menú</a>
     </div>
-  </div>
-</body>
-</html>
+  </div></body></html>
