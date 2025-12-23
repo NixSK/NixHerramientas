@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Crianza Pro</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: rgba(30, 30, 30, 0.9);
+            --accent-pink: #ff85a2;
+            --text-gray: #b0b0b0;
+            --input-bg: #000000;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("Imagenes/crianza.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.85);
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: var(--accent-pink);
+            font-size: 1.2rem;
+            border-bottom: 1px solid var(--accent-pink);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        label {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid #333;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-weight: bold;
+        }
+
+        .results-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid var(--accent-pink);
+            border-radius: 10px;
+            display: none;
+        }
+
+        .result-item {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+        }
+
+        .summary-title {
+            color: var(--accent-pink);
+            font-weight: bold;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: var(--accent-pink);
+            border: none;
+            border-radius: 8px;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .volver {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+        }
+
+        h3 { color: #888; font-size: 0.9rem; margin-top: 25px; }
+    </style>
+</head>
+<body>
+<div class="overlay">
+    <div class="container">
+        
+        <h2>CONFIGURACIÓN INICIAL</h2>
+        <div class="grid">
+            <div class="card">
+                <label>Cantidad de IVs</label>
+                <select id="targetIvs">
+                    <option value="2">2x31</option>
+                    <option value="3">3x31</option>
+                    <option value="4">4x31</option>
+                    <option value="5" selected>5x31</option>
+                </select>
+            </div>
+            <div class="card">
+                <label>¿Naturaleza?</label>
+                <select id="conNatu"><option value="si">Sí</option><option value="no">No</option></select>
+            </div>
+            <div class="card"><label>Breeder Hembra $</label><input type="number" id="precioH" value="2000"></div>
+            <div class="card"><label>Breeder Macho $</label><input type="number" id="precioM" value="3000"></div>
+        </div>
+
+        <h2>INVENTARIO ACTUAL</h2>
+        <h3>Hembras</h3>
+        <div class="grid">
+            <div class="card"><label>Tengo 1x31 H:</label><input type="number" id="inv1h" value="0"></div>
+            <div class="card"><label>Tengo 2x31 H:</label><input type="number" id="inv2h" value="0"></div>
+            <div class="card"><label>Tengo 3x31 H:</label><input type="number" id="inv3h" value="0"></div>
+            <div class="card"><label>Tengo 4x31 H:</label><input type="number" id="inv4h" value="0"></div>
+            <div class="card"><label>Tengo 5x31 H:</label><input type="number" id="inv5h" value="0"></div>
+        </div>
+
+        <h3>Machos</h3>
+        <div class="grid">
+            <div class="card"><label>Tengo 1x31 M:</label><input type="number" id="inv1m" value="0"></div>
+            <div class="card"><label>Tengo 2x31 M:</label><input type="number" id="inv2m" value="0"></div>
+            <div class="card"><label>Tengo 3x31 M:</label><input type="number" id="inv3m" value="0"></div>
+            <div class="card"><label>Tengo 4x31 M:</label><input type="number" id="inv4m" value="0"></div>
+        </div>
+
+        <h3>Con Naturaleza (Natu)</h3>
+        <div class="grid">
+            <div class="card"><label>Tengo 1x31 Natu:</label><input type="number" id="inv1n" value="0"></div>
+            <div class="card"><label>Tengo 2x31 Natu:</label><input type="number" id="inv2n" value="0"></div>
+            <div class="card"><label>Tengo 3x31 Natu:</label><input type="number" id="inv3n" value="0"></div>
+            <div class="card"><label>Tengo 4x31 Natu:</label><input type="number" id="inv4n" value="0"></div>
+        </div>
+
+        <h2>RECURSOS Y MÉTODOS</h2>
+        <div class="grid">
+            <div class="card"><label>Brazales</label><select id="precioBrazal"><option value="10000">Comprar ($10k)</option><option value="0">Ya tengo</option></select></div>
+            <div class="card"><label>Piedras Eternas</label><select id="precioPiedra"><option value="5000">Comprar ($5k)</option><option value="0">Ya tengo</option></select></div>
+            <div class="card"><label>Precio de Género</label><select id="precioGenero"><option value="5000">Normal ($5k)</option><option value="21000">Especial ($21k)</option><option value="0">Sin Género</option></select></div>
+        </div>
+
+        <button onclick="calcularCrianza()">CALCULAR COSTOS Y MATERIALES</button>
+        <div class="results-container" id="resultados"></div>
+        <a class="volver" href="index.html">⬅ Volver al menú</a>
+    </div>
+</div>
+
+<script>
+function calcularCrianza() {
+    // --- DATOS INICIALES ---
+    const target = parseInt(document.getElementById('targetIvs').value);
+    const quiereNatu = document.getElementById('conNatu').value === "si";
+    const pH = parseFloat(document.getElementById('precioH').value);
+    const pM = parseFloat(document.getElementById('precioM').value);
+    const pB = parseFloat(document.getElementById('precioBrazal').value);
+    const pP = parseFloat(document.getElementById('precioPiedra').value);
+    const pG = parseFloat(document.getElementById('precioGenero').value);
+
+    let stats = { hComp: 0, mComp: 0, nComp: 0, braz: 0, pied: 0, gen: 0 };
+    
+    // Clon de inventario para manejo biológico
+    let inv = {
+        h: [0, parseInt(document.getElementById('inv1h').value), parseInt(document.getElementById('inv2h').value), parseInt(document.getElementById('inv3h').value), parseInt(document.getElementById('inv4h').value), parseInt(document.getElementById('inv5h').value)],
+        m: [0, parseInt(document.getElementById('inv1m').value), parseInt(document.getElementById('inv2m').value), parseInt(document.getElementById('inv3m').value), parseInt(document.getElementById('inv4m').value)],
+        n: [0, parseInt(document.getElementById('inv1n').value), parseInt(document.getElementById('inv2n').value), parseInt(document.getElementById('inv3n').value), parseInt(document.getElementById('inv4n').value)]
+    };
+
+    // --- MOTOR DE CÁLCULO POR CAPAS (Iterativo) ---
+    // Calcularemos el costo de tener cada bicho, paso a paso.
+    let costosSinNatu = [0, 0, 0, 0, 0, 0]; // Index 1 a 5
+    let costosConNatu = [0, 0, 0, 0, 0];    // Index 1 a 4
+
+    // Nivel 1: Son los breeders (costo unitario para el siguiente nivel)
+    // No se calculan solos, se usan en el nivel 2.
+
+    // NIVEL 2
+    costosSinNatu[2] = (() => {
+        if (inv.h[2] > 0) { inv.h[2]--; return 0; }
+        if (inv.m[2] > 0) { inv.m[2]--; return 0; }
+        let c = 0;
+        if (inv.h[1] > 0) { inv.h[1]--; } else { c += pH; stats.hComp++; }
+        if (inv.m[1] > 0) { inv.m[1]--; } else { c += pM; stats.mComp++; }
+        stats.braz += 2;
+        return c + (pB * 2);
+    })();
+
+    costosConNatu[2] = (() => {
+        if (inv.n[2] > 0) { inv.n[2]--; return 0; }
+        let base = (inv.h[2] > 0 || inv.m[2] > 0) ? (inv.h[2] > 0 ? inv.h[2]-- : inv.m[2]--, 0) : costosSinNatu[2];
+        let cN = 0;
+        if (inv.n[1] > 0) { inv.n[1]--; } else { cN = pM; stats.nComp++; }
+        stats.gen++; stats.braz += 1; stats.pied += 1;
+        return base + cN + pG + pB + pP;
+    })();
+
+    // NIVEL 3
+    costosSinNatu[3] = (() => {
+        if (inv.h[3] > 0) { inv.h[3]--; return 0; }
+        if (inv.m[3] > 0) { inv.m[3]--; return 0; }
+        const p1 = (inv.h[2] > 0 || inv.m[2] > 0) ? (inv.h[2] > 0 ? inv.h[2]-- : inv.m[2]--, 0) : costosSinNatu[2];
+        const p2 = (inv.h[2] > 0 || inv.m[2] > 0) ? (inv.h[2] > 0 ? inv.h[2]-- : inv.m[2]--, 0) : costosSinNatu[2];
+        stats.braz += 2; stats.gen += 1;
+        return p1 + p2 + (pB * 2) + pG;
+    })();
+
+    costosConNatu[3] = (() => {
+        if (inv.n[3] > 0) { inv.n[3]--; return 0; }
+        const base = (inv.h[3] > 0 || inv.m[3] > 0) ? (inv.h[3] > 0 ? inv.h[3]-- : inv.m[3]--, 0) : costosSinNatu[3];
+        const natuAnterior = (inv.n[2] > 0) ? (inv.n[2]--, 0) : costosConNatu[2];
+        stats.braz += 1; stats.pied += 1; stats.gen += 1;
+        return base + natuAnterior + pB + pP + pG;
+    })();
+
+    // NIVEL 4
+    costosSinNatu[4] = (() => {
+        if (inv.h[4] > 0) { inv.h[4]--; return 0; }
+        if (inv.m[4] > 0) { inv.m[4]--; return 0; }
+        const p1 = (inv.h[3] > 0 || inv.m[3] > 0) ? (inv.h[3] > 0 ? inv.h[3]-- : inv.m[3]--, 0) : costosSinNatu[3];
+        const p2 = (inv.h[3] > 0 || inv.m[3] > 0) ? (inv.h[3] > 0 ? inv.h[3]-- : inv.m[3]--, 0) : costosSinNatu[3];
+        stats.braz += 2; stats.gen += 1;
+        return p1 + p2 + (pB * 2) + pG;
+    })();
+
+    costosConNatu[4] = (() => {
+        // Para calcular el 4x31 Natu necesitamos el 4x31 Sin y el 3x31 Natu
+        const base = (inv.h[4] > 0 || inv.m[4] > 0) ? (inv.h[4] > 0 ? inv.h[4]-- : inv.m[4]--, 0) : costosSinNatu[4];
+        const natuAnterior = (inv.n[3] > 0) ? (inv.n[3]--, 0) : costosConNatu[3];
+        stats.braz += 1; stats.pied += 1; stats.gen += 1;
+        return base + natuAnterior + pB + pP + pG;
+    })();
+
+    // NIVEL 5
+    costosSinNatu[5] = (() => {
+        if (inv.h[5] > 0) { inv.h[5]--; return 0; }
+        const p1 = (inv.h[4] > 0 || inv.m[4] > 0) ? (inv.h[4] > 0 ? inv.h[4]-- : inv.m[4]--, 0) : costosSinNatu[4];
+        const p2 = (inv.h[4] > 0 || inv.m[4] > 0) ? (inv.h[4] > 0 ? inv.h[4]-- : inv.m[4]--, 0) : costosSinNatu[4];
+        stats.braz += 2; stats.gen += 1;
+        return p1 + p2 + (pB * 2) + pG;
+    })();
+
+    // --- RESULTADO FINAL ---
+    let finalTotal = 0;
+    if (target === 5) {
+        if (!quiereNatu) {
+            finalTotal = costosSinNatu[5];
+        } else {
+            // Un 5x31 Con Natu es: (5x31 Sin) + (4x31 Natu) + brazal + piedra + genero
+            const base5 = costosSinNatu[5];
+            const natu4 = (inv.n[4] > 0) ? (inv.n[4]--, 0) : costosConNatu[4];
+            stats.braz += 1; stats.pied += 1; stats.gen += 1;
+            finalTotal = base5 + natu4 + pB + pP + pG;
+        }
+    } else {
+        // Para niveles menores al 5
+        finalTotal = quiereNatu ? costosConNatu[target] : costosSinNatu[target];
+    }
+
+    // --- RENDERIZADO ---
+    const res = document.getElementById('resultados');
+    res.style.display = 'block';
+    res.innerHTML = `
+        <div class="summary-title">TOTAL PARA ${target}x31 ${quiereNatu?'CON':'SIN'} NATU</div>
+        <div class="result-item" style="color:var(--accent-pink); font-size:1.4rem; font-weight:bold;">
+            <span>COSTO ESTIMADO:</span> <span>$${finalTotal.toLocaleString()}</span>
+        </div>
+        <div class="summary-title">LISTA DE COMPRA</div>
+        <div class="result-item"><span>1x31 Hembras:</span><span>${stats.hComp} ($${(stats.hComp*pH).toLocaleString()})</span></div>
+        <div class="result-item"><span>1x31 Machos (Normal):</span><span>${stats.mComp} ($${(stats.mComp*pM).toLocaleString()})</span></div>
+        <div class="result-item"><span>1x31 Machos (Natu):</span><span>${stats.nComp} ($${(stats.nComp*pM).toLocaleString()})</span></div>
+        <div class="result-item"><span>Brazales:</span><span>${stats.braz} ($${(stats.braz*pB).toLocaleString()})</span></div>
+        <div class="result-item"><span>Piedras Eternas:</span><span>${stats.pied} ($${(stats.pied*pP).toLocaleString()})</span></div>
+        <div class="result-item"><span>Pagos de Género:</span><span>${stats.gen} ($${(stats.gen*pG).toLocaleString()})</span></div>
+    `;
+}
+</script>
+</body>
+</html>

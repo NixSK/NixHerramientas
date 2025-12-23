@@ -11,83 +11,172 @@
       background-image: url("Imagenes/Fondo.jpg");
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
       min-height: 100vh;
       color: white;
+      /* Transición suave para el cambio de fondo */
+      transition: background-image 1.5s ease-in-out;
     }
 
     .overlay {
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.7);
       min-height: 100vh;
-      padding: 40px;
+      padding: 40px 20px;
+      box-sizing: border-box;
     }
 
     h1 {
       text-align: center;
       margin-bottom: 40px;
+      font-size: 2.5rem;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      max-width: 800px;
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 25px;
+      max-width: 900px;
       margin: auto;
     }
 
     .card {
       background: rgba(255,255,255,0.15);
       border-radius: 12px;
-      padding: 15px;
+      padding: 12px;
       text-align: center;
       cursor: pointer;
       transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      min-height: auto; 
     }
 
     .card:hover {
       background: rgba(255,255,255,0.3);
-      transform: scale(1.05);
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    /* IMAGEN DENTRO DEL CARD (MISMO PARA TODOS) */
     .card img {
       width: 100%;
-      height: 120px;
+      height: 140px; 
       object-fit: cover;
       object-position: center;
       border-radius: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 12px; 
+      background: rgba(0,0,0,0.3); 
+    }
+
+    /* Ajuste específico para la imagen de Piedra Eterna */
+    .ajuste-piedra {
+      object-fit: cover !important; 
+      object-position: 50% 100% !important; 
     }
 
     .card-title {
       font-weight: bold;
+      margin-top: 0; 
+      font-size: 1rem;
     }
   </style>
 </head>
-
 <body>
+
   <div class="overlay">
-    <h1>🛠️ Nix Herramientas</h1>
+    <h1>⚒️ Nix Herramientas</h1>
 
     <div class="grid">
 
-      <!-- FARME0 HO-OH -->
       <div class="card" onclick="location.href='ho-oh.html'">
         <img src="Imagenes/Ho-Oh.jpg" alt="Ho-Oh">
         <div class="card-title">Ho-Oh</div>
       </div>
 
-      <!-- FARME0 RED -->
       <div class="card" onclick="location.href='Red.html'">
         <img src="Imagenes/Red.jpg" alt="Red">
         <div class="card-title">Red</div>
       </div>
 
-      <!-- PROXIMAMENTE -->
-      <div class="card" onclick="alert('Próximamente')">
-        Próximamente
+      <div class="card" onclick="location.href='PayDay.html'">
+        <img src="Imagenes/PayDay.jpg" alt="Dia de pago">
+        <div class="card-title">Dia de pago</div>
+      </div>
+
+      <div class="card" onclick="location.href='EscCorazon.html'">
+        <img src="Imagenes/EscCorazon.jpg" alt="Escamas">
+        <div class="card-title">Escamas corazon</div>
+      </div>
+
+      <div class="card" onclick="location.href='Everstone.html'">
+        <img src="Imagenes/Everstone.png" alt="Piedra Eterna" class="ajuste-piedra">
+        <div class="card-title">Piedra eterna</div>
+      </div>
+
+      <div class="card" onclick="location.href='MonAmuleto.html'">
+        <img src="Imagenes/mon.amuleto.jpg" alt="Moneda">
+        <div class="card-title">Moneda amuleto</div>
+      </div>
+
+      <div class="card" onclick="location.href='Gyms.html'">
+        <img src="Imagenes/Gyms.jpg" alt="Gyms">
+        <div class="card-title">Gyms</div>
+      </div>
+
+      <div class="card" onclick="location.href='REEMPLAZAR_URL.html'">
+        <img src="Imagenes/REEMPLAZAR_IMAGEN.jpg" alt="NPCs">
+        <div class="card-title">NPCs</div>
+      </div>
+	  
+	  <div class="card" onclick="location.href='Crianza.html'">
+        <img src="Imagenes/Crianza.jpg" alt="Crianza">
+        <div class="card-title">Crianza</div>
+      </div>
       </div>
 
     </div>
   </div>
+
+  <script>
+    // --- LISTA DE RUTAS PARA EL FONDO ---
+    // Puedes añadir o quitar rutas aquí. El código ignorará las inválidas.
+    const rutasFondos = [
+      "Imagenes/Fondo.jpg",
+	  "Imagenes/Fondo1.jpg",
+	  "Imagenes/Fondo2.jpg", 
+	  "Imagenes/Fondo3.jpg"
+    ];
+
+    let fondosValidos = [];
+    let indiceActual = 0;
+
+    // Función que verifica si las imágenes existen antes de usarlas
+    function cargarFondosValidos() {
+      rutasFondos.forEach(ruta => {
+        const img = new Image();
+        img.onload = () => {
+          // Si la imagen carga y no es un marcador de posición, se agrega
+          if (!ruta.includes("REEMPLAZAR")) {
+            fondosValidos.push(ruta);
+          }
+        };
+        img.src = ruta;
+      });
+    }
+
+    function cambiarFondo() {
+      if (fondosValidos.length > 0) {
+        indiceActual = (indiceActual + 1) % fondosValidos.length;
+        document.body.style.backgroundImage = `url('${fondosValidos[indiceActual]}')`;
+      }
+    }
+
+    // Inicializar
+    cargarFondosValidos();
+    
+    // Cambia el fondo cada 7 segundos
+    setInterval(cambiarFondo, 7000);
+  </script>
+
 </body>
 </html>
